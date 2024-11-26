@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using FormsApp.Models;
-using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FormsApp.Controllers;
@@ -85,10 +83,13 @@ public class HomeController : Controller
 
         if(ModelState.IsValid)
         {
+        if(imageFile != null) {
+            
         using(var stream = new FileStream(path, FileMode.Create))
         // dosya yükleme işlemi
-        {
-            await imageFile!.CopyToAsync(stream);
+            {
+                await imageFile!.CopyToAsync(stream);
+            }
         }
         model.Image = randomFileName;
         model.ProductId = Repository.Products.Count+1;
@@ -112,4 +113,19 @@ public class HomeController : Controller
     // {
     //     return View();
     // }
+
+    public IActionResult Edit(int? id)
+    {   
+        if(id==null)
+        {
+            return NotFound();
+        }
+        var entity = Repository.Products.FirstOrDefault(p => p.ProductId == id);
+        if(entity == null)
+        {
+            return NotFound();
+        }
+        ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
+        return View(entity);
+    }
 }

@@ -28,3 +28,4 @@
 /Users/sezaigenel/Desktop/aspdotnet/aspnetcore-dersleri-udemy/FormsApp/obj/Debug/net7.0/FormsApp.pdb
 /Users/sezaigenel/Desktop/aspdotnet/aspnetcore-dersleri-udemy/FormsApp/obj/Debug/net7.0/FormsApp.genruntimeconfig.cache
 /Users/sezaigenel/Desktop/aspdotnet/aspnetcore-dersleri-udemy/FormsApp/obj/Debug/net7.0/ref/FormsApp.dll
+/Users/sezaigenel/Desktop/aspdotnet/aspnetcore-dersleri-udemy/FormsApp/obj/Debug/net7.0/FormsApp.sourcelink.json
