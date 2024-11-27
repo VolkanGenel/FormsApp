@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FormsApp.Models
 {
@@ -35,7 +36,7 @@ namespace FormsApp.Models
         {
             _products.Add(entity);
         }
-        
+
         public static List<Category> Categories 
         {
             get
@@ -44,5 +45,36 @@ namespace FormsApp.Models
             }
         }
 
+    public static void EditProduct(Product updatedProduct)
+    {
+        var entity = _products.FirstOrDefault(p=>p.ProductId==updatedProduct.ProductId);
+        if(entity != null)
+        {
+            entity.Name = updatedProduct.Name;
+            entity.Price = updatedProduct.Price;
+            entity.Image = updatedProduct.Image;
+            entity.CategoryId = updatedProduct.CategoryId;
+            entity.IsActive = updatedProduct.IsActive;
+        }
+
+    }
+
+        public static void EditIsActive(Product updatedProduct)
+    {
+        var entity = _products.FirstOrDefault(p=>p.ProductId==updatedProduct.ProductId);
+        if(entity != null)
+        {
+            entity.IsActive = updatedProduct.IsActive;
+        }
+
+    }
+    public static void DeleteProduct(Product entity)
+    {
+        var deleteEntity = _products.FirstOrDefault(p=>p.ProductId==entity.ProductId);
+        if(deleteEntity != null)
+        {
+        _products.Remove(entity);
+        }
+    }
     }
 }
